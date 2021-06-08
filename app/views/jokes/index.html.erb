@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Jokes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Url</th>
+      <th>Icon url</th>
+      <th>Value</th>
+      <th>Categories</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jokes.each do |joke| %>
+      <tr>
+        <td><%= joke.url %></td>
+        <td><%= joke.icon_url %></td>
+        <td><%= joke.value %></td>
+        <td><%= joke.categories %></td>
+        <td><%= link_to 'Show', joke %></td>
+        <td><%= link_to 'Edit', edit_joke_path(joke) %></td>
+        <td><%= link_to 'Destroy', joke, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Joke', new_joke_path %>

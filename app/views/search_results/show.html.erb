@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Keywords:</strong>
+  <%= @search_result.keywords %>
+</p>
+
+<p>
+  <strong>Categories:</strong>
+  <%= @search_result.categories %>
+</p>
+
+<p>
+  <strong>Random:</strong>
+  <%= @search_result.random %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @search_result.email %>
+</p>
+
+<%= link_to 'Edit', edit_search_result_path(@search_result) %> |
+<%= link_to 'Back', search_results_path %>

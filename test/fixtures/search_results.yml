@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  keywords: MyString
+  categories: MyString
+  random: false
+  email: MyString
+
+two:
+  keywords: MyString
+  categories: MyString
+  random: false
+  email: MyString

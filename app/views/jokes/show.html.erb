@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @joke.url %>
+</p>
+
+<p>
+  <strong>Icon url:</strong>
+  <%= @joke.icon_url %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @joke.value %>
+</p>
+
+<p>
+  <strong>Categories:</strong>
+  <%= @joke.categories %>
+</p>
+
+<%= link_to 'Edit', edit_joke_path(@joke) %> |
+<%= link_to 'Back', jokes_path %>
