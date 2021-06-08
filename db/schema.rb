@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 2021_06_08_054502) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "jokes_search_results", id: false, force: :cascade do |t|
+    t.string "joke_id"
+    t.bigint "search_result_id"
+    t.index ["joke_id"], name: "index_jokes_search_results_on_joke_id"
+    t.index ["search_result_id"], name: "index_jokes_search_results_on_search_result_id"
+  end
+
   create_table "search_results", force: :cascade do |t|
     t.string "keywords"
     t.string "categories"

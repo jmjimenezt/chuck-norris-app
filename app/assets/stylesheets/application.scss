@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+a:link {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    background-color: transparent;
+    color: black;
+    font-weight: bold;
+}

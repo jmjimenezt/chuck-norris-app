@@ -1,0 +1,5 @@
+es:
+  submit_search: "Buscar chistes"
+  input_placeholder: "Escribe algo (en inglés)"
+  search_info: "Si solo haces click en Buscar, encontrarás un chiste aleatorio"
+  send_results_by_email: "Enviar resultados por email"

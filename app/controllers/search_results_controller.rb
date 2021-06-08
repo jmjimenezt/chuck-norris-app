@@ -1,5 +1,5 @@
 class SearchResultsController < ApplicationController
-  before_action :set_search_result, only: %i[ show edit update destroy ]
+  before_action :set_search_result, only: %i[ show edit update destroy send_results ]
 
   # GET /search_results or /search_results.json
   def index
@@ -8,6 +8,7 @@ class SearchResultsController < ApplicationController
 
   # GET /search_results/1 or /search_results/1.json
   def show
+    @jokes_array = Kaminari.paginate_array(@search_result.jokes).page(params[:page]).per(6)
   end
 
   # GET /search_results/new
@@ -22,6 +23,16 @@ class SearchResultsController < ApplicationController
   # POST /search_results or /search_results.json
   def create
     @search_result = SearchResult.new(search_result_params)
+    @search_result.random = search_result_params["keywords"].blank? # It's a random search if not keywords provided
+
+    options = { query: { query: search_result_params["keywords"] } }
+    jokes_result = (search_result_params["keywords"].blank?) ? RandomJokeService.new.call : JokeSearchService.new.call(options)
+    
+    jokes_result.each do |j|
+      j["categories"] = j["categories"].join(', ') # Not happy with this. Just done to avoid creating a Category model
+      joke = Joke.find_or_create_by(j)
+      @search_result.jokes << joke
+    end
 
     respond_to do |format|
       if @search_result.save
@@ -54,6 +65,11 @@ class SearchResultsController < ApplicationController
       format.html { redirect_to search_results_url, notice: "Search result was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def send_results
+    puts "TODO: sending search results by email to #{search_result_params["email"]}"
+    redirect_to @search_result, notice: "Search results sent by email to #{search_result_params["email"]}" 
   end
 
   private

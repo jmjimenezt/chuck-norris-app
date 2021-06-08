@@ -30,4 +30,7 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  submit_search: "Search jokes"
+  input_placeholder: "Just type something"
+  search_info: "If you just click on search, you'll get a random joke"
+  send_results_by_email: "Send results by email"

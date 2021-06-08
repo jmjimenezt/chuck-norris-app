@@ -1,24 +1,13 @@
+
+<div class="card" style="width: 20rem;">
+  <img src="<%= @joke.icon_url %>" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text"><%= @joke.value %></p>
+    <span class="badge rounded-pill bg-primary"><%= @joke.categories %></span>
+    <span class="badge rounded-pill bg-info"><a href="<%= @joke.url %>">Original URL</a></span>
+    
+  </div>
+</div>
+
+
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Url:</strong>
-  <%= @joke.url %>
-</p>
-
-<p>
-  <strong>Icon url:</strong>
-  <%= @joke.icon_url %>
-</p>
-
-<p>
-  <strong>Value:</strong>
-  <%= @joke.value %>
-</p>
-
-<p>
-  <strong>Categories:</strong>
-  <%= @joke.categories %>
-</p>
-
-<%= link_to 'Edit', edit_joke_path(@joke) %> |
-<%= link_to 'Back', jokes_path %>
