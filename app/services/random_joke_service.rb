@@ -7,9 +7,9 @@ class RandomJokeService
     @client = ChuckNorrisClient.new
   end
 
-  def call
+  def call(options = {})
     @jokes = []
-    result = @client.random
+    result = @client.random(options)
     json = JSON.parse(result.response.body)
     @jokes.push(json) if !json.nil?
   end

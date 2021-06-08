@@ -23,10 +23,17 @@ class SearchResultsController < ApplicationController
   # POST /search_results or /search_results.json
   def create
     @search_result = SearchResult.new(search_result_params)
-    @search_result.random = search_result_params["keywords"].blank? # It's a random search if not keywords provided
+    is_random = search_result_params["keywords"].blank? # It's a random search if not keywords provided
+    @search_result.random = is_random
 
-    options = { query: { query: search_result_params["keywords"] } }
-    jokes_result = (search_result_params["keywords"].blank?) ? RandomJokeService.new.call : JokeSearchService.new.call(options)
+    if (is_random) 
+      options = search_result_params["categories"].blank? ? {} : { query: { category: search_result_params["categories"] } }
+      jokes_result = RandomJokeService.new.call(options)
+    else
+      # Regular search
+      options = { query: { query: search_result_params["keywords"] } }
+      jokes_result = JokeSearchService.new.call(options)
+    end
     
     jokes_result.each do |j|
       j["categories"] = j["categories"].join(', ') # Not happy with this. Just done to avoid creating a Category model
